@@ -27,6 +27,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('click', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
@@ -35,15 +36,13 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+    // Returns a random value
+    random: function() {
+        return Math.floor(Math.random() * 999999);
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+        var number = document.getElementById('number');
+        number.innerHTML = app.random();
     }
 };
